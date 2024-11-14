@@ -27,11 +27,25 @@
 			>
 				Control Click me
 			</button>
+			<button
+				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=story"
+				hx-trigger="click"
+				hx-target="#results-beforeend"
+				hx-swap="beforeend"
+			>
+				Click me beforeend
+			</button>
+			<!-- hx-swap por default es innerHTML -->
 			<ul id="results-click">
 				Results click
 			</ul>
+			<!-- hx-swap outerHTML sustituirá el ul por completo -->
 			<ul id="results">
 				<li>Aquí irán los resultados</li>
+			</ul>
+			<ul id="results-beforeend">
+				<li>Aquí irán los resultados before end</li>
+				<!-- los insertará después del li no sustituirá el innerHTML -->
 			</ul>
 		</header>
 	</body>
