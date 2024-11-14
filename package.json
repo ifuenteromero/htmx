@@ -1,0 +1,13 @@
+{
+	"name": "htmx",
+	"version": "1.0.0",
+	"description": "HTMX tutorial",
+	"scripts": {
+		"format": "prettier --write ."
+	},
+	"author": "Irene Fuente",
+	"license": "ISC",
+	"devDependencies": {
+		"prettier": "^3.3.3"
+	}
+}
