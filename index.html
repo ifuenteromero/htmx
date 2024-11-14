@@ -20,15 +20,16 @@
 				hx-trigger="click delay:2s"
 				hx-target="#results-click"
 				hx-swap="outerHTML"
+				hx-indicator=".loader"
 			>
 				<!-- hx-trigger="load" cuando se carga la página. Por default es click -->
 				Click Me
-				<span class="htmx-indicator loader"></span>
 			</button>
 			<button
 				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=story"
 				hx-trigger="click[ctrlKey]"
 				hx-target="#results"
+				hx-indicator=".loader"
 			>
 				Control Click me
 			</button>
@@ -37,21 +38,25 @@
 				hx-trigger="click"
 				hx-target="#results-beforeend"
 				hx-swap="beforeend"
+				hx-indicator=".loader"
 			>
 				Click me beforeend
 			</button>
-			<!-- hx-swap por default es innerHTML -->
-			<ul id="results-click">
-				Results click
-			</ul>
-			<!-- hx-swap outerHTML sustituirá el ul por completo -->
-			<ul id="results">
-				<li>Aquí irán los resultados</li>
-			</ul>
-			<ul id="results-beforeend">
-				<li>Aquí irán los resultados before end</li>
-				<!-- los insertará después del li no sustituirá el innerHTML -->
-			</ul>
+			<div class="container">
+				<span class="htmx-indicator loader"></span>
+				<!-- hx-swap por default es innerHTML -->
+				<ul id="results-click">
+					Results click
+				</ul>
+				<!-- hx-swap outerHTML sustituirá el ul por completo -->
+				<ul id="results">
+					<li>Aquí irán los resultados</li>
+				</ul>
+				<ul id="results-beforeend">
+					<li>Aquí irán los resultados before end</li>
+					<!-- los insertará después del li no sustituirá el innerHTML -->
+				</ul>
+			</div>
 		</header>
 	</body>
 </html>
