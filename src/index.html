@@ -1,5 +1,29 @@
-<script src="https://unpkg.com/htmx.org@1.9.10"></script>
-<!-- have a button POST a click via AJAX -->
-<button hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=story">
-	Click Me
-</button>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>HTMX</title>
+	</head>
+	<body>
+		<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+		<header>
+			<button
+				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=story"
+				hx-trigger="click delay:5s"
+			>
+				<!-- hx-trigger="load" cuando se carga la página. Por default es click -->
+				Click Me
+			</button>
+			<button
+				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=story"
+				hx-trigger="click[ctrlKey]"
+			>
+				Control Click me
+			</button>
+		</header>
+	</body>
+</html>
