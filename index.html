@@ -13,8 +13,19 @@
 		/>
 	</head>
 	<body>
-		<script src="https://unpkg.com/htmx.org@1.9.10"></script>
-		<header>
+		<script
+			defer
+			src="https://unpkg.com/htmx.org@1.9.10"
+		></script>
+		<script
+			defer
+			src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"
+		></script>
+		<script
+			defer
+			src="https://unpkg.com/mustache@latest"
+		></script>
+		<header hx-ext="client-side-templates">
 			<button
 				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=story"
 				hx-trigger="click delay:2s"
@@ -22,6 +33,7 @@
 				hx-swap="outerHTML"
 				hx-indicator=".loader"
 				hx-disabled-elt="this"
+				mustache-template="template-results"
 			>
 				<!-- hx-trigger="load" cuando se carga la página. Por default es click -->
 				Click Me
@@ -32,6 +44,7 @@
 				hx-target="#results"
 				hx-indicator=".loader"
 				hx-disabled-elt="this"
+				mustache-template="template-results"
 			>
 				Control Click me
 			</button>
@@ -42,6 +55,7 @@
 				hx-swap="beforeend"
 				hx-indicator=".loader"
 				hx-disabled-elt="this"
+				mustache-template="template-results"
 			>
 				Click me beforeend
 			</button>
@@ -59,6 +73,13 @@
 					<li>Aquí irán los resultados before end</li>
 					<!-- los insertará después del li no sustituirá el innerHTML -->
 				</ul>
+				<template id="template-results">
+					{{#hits}}
+					<li>
+						<a href="{{url}}">{{title}}</a>
+					</li>
+					{{/hits}}
+				</template>
 			</div>
 		</header>
 	</body>
