@@ -7,6 +7,10 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>HTMX</title>
+		<link
+			rel="stylesheet"
+			href="/src/styles.css"
+		/>
 	</head>
 	<body>
 		<script src="https://unpkg.com/htmx.org@1.9.10"></script>
@@ -19,6 +23,7 @@
 			>
 				<!-- hx-trigger="load" cuando se carga la página. Por default es click -->
 				Click Me
+				<span class="htmx-indicator loader"></span>
 			</button>
 			<button
 				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=story"

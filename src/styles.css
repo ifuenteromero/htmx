@@ -1,0 +1,38 @@
+:root {
+	--primary-color: #ff3d00;
+	--secondary-color: #000;
+	--loader-size: 16px;
+	--border-width: 2px;
+}
+
+.loader {
+	width: var(--loader-size);
+	height: var(--loader-size);
+	display: inline-block;
+	position: relative;
+}
+.loader::after,
+.loader::before {
+	content: '';
+	box-sizing: border-box;
+	width: var(--loader-size);
+	height: var(--loader-size);
+	border: var(--border-width) solid var(--secondary-color);
+	position: absolute;
+	left: 0;
+	top: 0;
+	animation: rotation 2s ease-in-out infinite alternate;
+}
+.loader::after {
+	border-color: var(--primary-color);
+	animation-direction: alternate-reverse;
+}
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
