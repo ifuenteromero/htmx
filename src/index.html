@@ -21,9 +21,13 @@
 			<button
 				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=story"
 				hx-trigger="click[ctrlKey]"
+				hx-target="#results"
 			>
 				Control Click me
 			</button>
+			<ul id="results">
+				<li>Aquí irán los resultados</li>
+			</ul>
 		</header>
 	</body>
 </html>
