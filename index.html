@@ -27,7 +27,7 @@
 		></script>
 		<header hx-ext="client-side-templates">
 			<button
-				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=story"
+				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=front_page"
 				hx-trigger="click delay:2s"
 				hx-target="#results"
 				hx-swap="delete"
@@ -39,7 +39,7 @@
 				Click Me
 			</button>
 			<button
-				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=story"
+				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=front_page"
 				hx-trigger="click[ctrlKey]"
 				hx-target="#results"
 				hx-indicator=".loader"
@@ -49,7 +49,7 @@
 				Control Click me
 			</button>
 			<button
-				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=story"
+				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=front_page&page=0&hitsPerPage=20"
 				hx-trigger="click"
 				hx-target="#results"
 				hx-swap="beforeend"
@@ -73,6 +73,12 @@
 						<a href="{{url}}">{{title}}</a>
 					</li>
 					{{/hits}}
+					<li
+						hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=front_page&page=1&hitsPerPage=20"
+						hx-trigger="revealed"
+						mustache-template="template-results"
+						hx-swap="outerHTML"
+					></li>
 				</template>
 			</div>
 		</header>
