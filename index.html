@@ -30,7 +30,7 @@
 				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=story"
 				hx-trigger="click delay:2s"
 				hx-target="#results-click"
-				hx-swap="outerHTML"
+				hx-swap="delete"
 				hx-indicator=".loader"
 				hx-disabled-elt="this"
 				mustache-template="template-results"
