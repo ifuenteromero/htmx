@@ -28,3 +28,10 @@
 
 -   hx-target: where to render the result of a an hx-get
 -   hx-swap: innerHTML, outerHTML, beforebegin, beforeend, delete (borra el target después de hacer la request)
+
+-   [loader]: (https://cssloaders.github.io/)
+
+    hx-indicator al trigger, htmx-indicator al loader
+
+-   hx-disabled-this
+-   templates. Mustache. mustache-template, hx-ext
