@@ -56,7 +56,7 @@ app.post('/movies', async (req, res) => {
 			rank: movie['#RANK'],
 		}));
 
-		res.json({ movies });
+		res.json(movies);
 	} catch (error) {
 		res.status(500).json({
 			error: 'Error al obtener datos de la API externa',
