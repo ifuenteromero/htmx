@@ -12,7 +12,9 @@
 			href="styles.css"
 		/>
 	</head>
-	<body>
+	<body
+		class="p-20 absolute top-0 z-[-2] h-screen w-screen bg-[#0f0d0e] bg-[radial-gradient(#14b8a6_1px,#0f0d0e_1px)] bg-[size:20px_20px]"
+	>
 		<script
 			defer
 			src="https://unpkg.com/htmx.org@1.9.10"
@@ -26,62 +28,58 @@
 			src="https://unpkg.com/mustache@latest"
 		></script>
 		<script src="https://cdn.tailwindcss.com"></script>
-		<header hx-ext="client-side-templates">
-			<button
-				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=front_page"
-				hx-trigger="click delay:2s"
-				hx-target="#results"
-				hx-swap="delete"
-				hx-indicator=".loader"
-				hx-disabled-elt="this"
-				mustache-template="template-results"
+		<script>
+			tailwind.config = {
+				theme: {
+					extend: {
+						colors: {},
+					},
+				},
+			};
+		</script>
+		<main class="h-full">
+			<div
+				class="max-w-md mx-auto"
+				hx-ext="client-side-templates"
 			>
-				<!-- hx-trigger="load" cuando se carga la página. Por default es click -->
-				Click Me
-			</button>
-			<button
-				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=front_page"
-				hx-trigger="click[ctrlKey]"
-				hx-target="#results"
-				hx-indicator=".loader"
-				hx-disabled-elt="this"
-				mustache-template="template-results"
-			>
-				Control Click me
-			</button>
-			<button
-				hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=front_page&page=0&hitsPerPage=20"
-				hx-trigger="click"
-				hx-target="#results"
-				hx-swap="beforeend"
-				hx-indicator=".loader"
-				hx-disabled-elt="this"
-				mustache-template="template-results"
-			>
-				Click me beforeend
-			</button>
-			<div class="container">
-				<span class="htmx-indicator loader"></span>
-				<!-- hx-swap por default es innerHTML -->
-				<!-- hx-swap outerHTML sustituirá el ul por completo -->
-				<ul id="results">
-					<li>Aquí irán los resultados before end</li>
-					<!-- los insertará después del li no sustituirá el innerHTML -->
-				</ul>
-				<template id="template-results">
-					{{#hits}}
-					<li>
-						<a href="{{url}}">{{title}}</a>
-					</li>
-					{{/hits}}
-					<li
-						hx-get="https://hn.algolia.com/api/v1/search_by_date?tags=front_page&page=1&hitsPerPage=20"
-						hx-trigger="revealed"
-						mustache-template="template-results"
-						hx-swap="outerHTML"
-					></li>
+				<div>
+					<label
+						for="search-input"
+						class="block mb-2 text-base font-medium dark:text-teal-50"
+						>Search movies</label
+					>
+					<input
+						hx-post="http://localhost:3000/movies"
+						hx-trigger="input changed delay:500ms"
+						hx-target="#movies"
+						name="search"
+						type="search"
+						id="search-input"
+						placeholder="Avengers, Lord of the rings, Arrival..."
+						class="border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-3 dark:bg-teal-50 dark:border-teal-600 dark:placeholder-zinc-900 dark:text-zinc-900 dark:focus:ring-teal-500 dark:focus:border-teal-500"
+						mustache-template="template-movies"
+					/>
+				</div>
+				<ul
+					id="movies"
+					class="grid grid-cols-2 text-white"
+				></ul>
+				<template id="template-movies">
+					{{#movies}}
+					<div class="mt-4">
+						<div class="flex items-center">
+							<div class="ml-4">
+								<h2
+									class="text-lg font-semibold text-gray-900 dark:text-teal-50"
+								>
+									{{title}}
+								</h2>
+							</div>
+						</div>
+					</div>
+					{{/movies}}
 				</template>
 			</div>
-		</header>
+		</main>
 	</body>
 </html>
